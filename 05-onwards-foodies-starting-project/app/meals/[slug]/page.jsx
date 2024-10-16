@@ -1,4 +1,4 @@
-export default function MealsSLug() {
+export default function MealSlug() {
   return (
     <main>
       <h1 style={{ color: 'white', textAlign: 'center' }}>
