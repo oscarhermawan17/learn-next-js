@@ -4,11 +4,19 @@ import jwt from "jsonwebtoken"
 
 export async function getTasksUser(token) {
   const decoded = jwt.verify(token, "secret_key")
-  console.log("decoded", decoded)
+  if (!decoded) {
+    throw new Error("Wrong Akses")
+  }
+
+  const findUserByEmail = Users.find((user) => user.email === decoded.email)
+
+  if (!findUserByEmail) {
+    throw new Error("User not found")
+  }
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve("masuk")
+      resolve(findUserByEmail.tasks)
     }, 1000)
   })
 }
