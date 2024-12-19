@@ -20,3 +20,7 @@ export async function getTasksUser(token) {
     }, 1000)
   })
 }
+
+export async function createTaskUser(a, b, c) {
+  console.log({ a, b, c })
+}

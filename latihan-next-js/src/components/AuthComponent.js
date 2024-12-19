@@ -4,7 +4,9 @@ import { redirect } from "next/navigation"
 import { useFormState } from "react-dom"
 
 export default function AuthComponent() {
-  const [state, formAction] = useFormState(authLogin, {})
+  const [state, formAction] = useFormState(authLogin, {
+    errors: { email: undefined, password: undefined },
+  })
 
   if (state.token) {
     localStorage.setItem("token", state.token)
@@ -19,7 +21,7 @@ export default function AuthComponent() {
             <p className="w-24">Username:</p>
             <input type="email" id="email" name="email" className="flex-1" />
           </div>
-          {state.errors?.email && state.errors?.email}
+          {state.errors.email && state.errors.email}
 
           <div className="flex items-center mb-4">
             <p className="w-24">Password:</p>
@@ -30,7 +32,7 @@ export default function AuthComponent() {
               className="flex-1"
             />
           </div>
-          {state.errors?.password && state.errors?.password}
+          {state.errors.password && state.errors.password}
 
           <button type="submit" className="p-1 bg-slate-500 w-full">
             Login
