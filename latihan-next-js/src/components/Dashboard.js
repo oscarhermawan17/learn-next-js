@@ -1,8 +1,9 @@
-import { useEffect } from "react"
+"use client"
+
 import useToggle from "./useToggle"
 import Modal from "./Modal"
 
-export default function Dashboard({ tasks, onLogout }) {
+export default function Dashboard({ tasks, onLogout, token }) {
   const { toggle: modalToggle, setToggleOn, setToggleOff } = useToggle(false)
 
   return (
@@ -16,7 +17,7 @@ export default function Dashboard({ tasks, onLogout }) {
         </button>
       </div>
 
-      <div className="grid sm:grid-cols-4 grid-cols-2 gap-4">
+      {/* <div className="grid sm:grid-cols-4 grid-cols-2 gap-4">
         {Object.keys(tasks).map((current) => {
           return (
             <div key={current} className="bg-slate-400">
@@ -26,14 +27,14 @@ export default function Dashboard({ tasks, onLogout }) {
             </div>
           )
         })}
-      </div>
+      </div> */}
 
-      <Modal
+      {/* <Modal
         title="title"
         description="description"
         modalToggle={modalToggle}
         setToggleOff={setToggleOff}
-      />
+      /> */}
     </>
   )
 }

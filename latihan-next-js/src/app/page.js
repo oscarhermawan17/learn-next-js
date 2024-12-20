@@ -1,5 +1,5 @@
-import HomeWrapperComponent from "@/components/HomeWrapperComponent"
+"use client"
 
-export default function Home(props) {
-  return <HomeWrapperComponent />
+export default function HomePage() {
+  return "masuk"
 }

@@ -1,7 +1,33 @@
-import { createContext } from "react"
+// context/AuthContext.js
+import { createContext, useContext, useState, useEffect } from "react"
+import Cookies from "js-cookie"
 
-export const AuthContext = createContext()
+const AuthContext = createContext()
 
-export default function AuthComponent({ children, value }) {
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+export const AuthProvider = ({ children }) => {
+  const [auth, setAuth] = useState(false) // auth state
+  const [user, setUser] = useState(null) // user data
+
+  useEffect(() => {
+    const token = Cookies.get("authToken")
+    if (token) {
+      // Simpan state auth jika token valid
+      setAuth(true)
+      // Fetch user data (optional)
+      // fetch('/api/user', {
+      //   headers: { Authorization: `Bearer ${token}` },
+      // })
+      //   .then((res) => res.json())
+      //   .then((data) => setUser(data))
+      //   .catch(() => setAuth(false));
+    }
+  }, [])
+
+  return (
+    <AuthContext.Provider value={{ auth, user, setAuth, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
+
+export const useAuth = () => useContext(AuthContext)
