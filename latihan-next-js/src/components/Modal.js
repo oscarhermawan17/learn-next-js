@@ -1,13 +1,13 @@
 "use client"
 
 import { createTaskUser } from "@/actions/task-actions"
-import { AuthContext } from "@/context/AuthContext"
-import { useContext } from "react"
+import { useAuth } from "@/context/AuthContext"
 import { useFormState } from "react-dom"
 
 export default function Modal({ modalToggle, setToggleOff }) {
-  const { token } = useContext(AuthContext)
-  const [state, formAction] = useFormState(createTaskUser.bind(null, token), {
+  const { token } = useAuth()
+
+  const [state, formAction] = useFormState(createTaskUser.bind({}, token), {
     error: {
       title: "",
       description: "",
